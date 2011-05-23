@@ -1,6 +1,7 @@
-package com.biggu.scannerdemo;
+package com.redealumni.scanner;
 
 import com.biggu.barcodescanner.client.android.Intents;
+import com.redealumni.scanner.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +25,7 @@ public class Demo extends Activity {
 
 			public void onClick(View v) {
 
-				Intent intent = new Intent(v.getContext(), com.biggu.scannerdemo.ScannerActivity.class);
+				Intent intent = new Intent(v.getContext(), com.redealumni.scanner.ScannerActivity.class);
 				intent.putExtra(Intents.Preferences.ENABLE_BEEP, true);
 				intent.putExtra(Intents.Preferences.ENABLE_VIBRATE, true);
 

@@ -1,6 +1,7 @@
-package com.biggu.scannerdemo;
+package com.redealumni.scanner;
 
 import com.biggu.barcodescanner.client.android.CaptureActivity;
+import com.redealumni.scanner.R;
 
 public class ScannerActivity extends CaptureActivity {
 
