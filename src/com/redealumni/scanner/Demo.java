@@ -11,19 +11,23 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Demo extends Activity {
+public class Demo extends Activity
+{
 	
 	private static final int SCANNER_REQUEST_CODE = 0;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
 		Button button = (Button)findViewById(R.id.btn);
-		button.setOnClickListener(new OnClickListener() {
+		button.setOnClickListener(new OnClickListener() 
+		{
 
-			public void onClick(View v) {
+			public void onClick(View v) 
+			{
 
 				Intent intent = new Intent(v.getContext(), com.redealumni.scanner.ScannerActivity.class);
 				intent.putExtra(Intents.Preferences.ENABLE_BEEP, true);
@@ -49,9 +53,10 @@ public class Demo extends Activity {
 			StudentInfo stdInfo = StudentInfo.fromJson(sample);
 			String result = stdInfo.getVerificationCode();
 			
-//			Bundle extras = data.getExtras();
-//			String result = extras.getString("SCAN_RESULT");
+			//Bundle extras = data.getExtras();
+			//String result = extras.getString("SCAN_RESULT");
 			TextView textView = (TextView)findViewById(R.id.txt);
 			textView.setText(result);
 		}
-	}}
+	}
+}
