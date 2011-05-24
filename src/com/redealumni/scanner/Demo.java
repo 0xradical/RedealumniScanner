@@ -35,12 +35,22 @@ public class Demo extends Activity {
 	}
 
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) 
+	{
 		
-		if (resultCode == Activity.RESULT_OK && requestCode == SCANNER_REQUEST_CODE) {
+		if (resultCode == Activity.RESULT_OK && requestCode == SCANNER_REQUEST_CODE) 
+		{
 
-			Bundle extras = data.getExtras();
-			String result = extras.getString("SCAN_RESULT");
+			//sample code to generate JSON
+			StudentInfo stdInfoSample = new StudentInfo();
+			String sample = stdInfoSample.toJson();
+			
+			//code to read stuff from JSON
+			StudentInfo stdInfo = StudentInfo.fromJson(sample);
+			String result = stdInfo.getVerificationCode();
+			
+//			Bundle extras = data.getExtras();
+//			String result = extras.getString("SCAN_RESULT");
 			TextView textView = (TextView)findViewById(R.id.txt);
 			textView.setText(result);
 		}
