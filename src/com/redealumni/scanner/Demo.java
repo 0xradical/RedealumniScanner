@@ -57,6 +57,10 @@ public class Demo extends Activity
 			//String result = extras.getString("SCAN_RESULT");
 			TextView textView = (TextView)findViewById(R.id.txt);
 			textView.setText(result);
+			
+			// Setting visibility of a View
+			//TextView messageView = (TextView)findViewById(R.id.message_view);
+			//messageView.setVisibility(TextView.GONE);
 		}
 	}
 }
