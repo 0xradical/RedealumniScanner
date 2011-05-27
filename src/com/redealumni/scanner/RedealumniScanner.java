@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Demo extends Activity
+public class RedealumniScanner extends Activity
 {
 	
 	private static final int SCANNER_REQUEST_CODE = 0;
@@ -44,7 +44,7 @@ public class Demo extends Activity
 		
 		if (resultCode == Activity.RESULT_OK && requestCode == SCANNER_REQUEST_CODE) 
 		{
-
+			
 			//sample code to generate JSON
 			StudentInfo stdInfoSample = new StudentInfo();
 			String sample = stdInfoSample.toJson();
@@ -57,6 +57,10 @@ public class Demo extends Activity
 			//String result = extras.getString("SCAN_RESULT");
 			TextView textView = (TextView)findViewById(R.id.txt);
 			textView.setText(result);
+			
+			// this method should post result to an url
+			// new PostStudentInfoTask().execute(result);
+
 			
 			// Setting visibility of a View
 			//TextView messageView = (TextView)findViewById(R.id.message_view);
