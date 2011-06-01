@@ -40,14 +40,14 @@ class PostStudentInfoTask extends AsyncTask<String,Void,String>
 		
 	    // Create a new HttpClient and Post Header
 		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost("http://algumdominio.heroku.com/validate");
+		HttpPost httppost = new HttpPost("http://someherokusite.heroku.com/validate");
 
 	    
 	    try 
 	    {
 	        // Add your data
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("student_code", studentCode[0]));
+	        nameValuePairs.add(new BasicNameValuePair("studentCode", studentCode[0]));
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 	        // Execute HTTP Post Request
@@ -64,8 +64,8 @@ class PostStudentInfoTask extends AsyncTask<String,Void,String>
 	        }
 	        
 	        // total has the return string
-	        this.postResult = "www";
-	        this.success = false;
+	        this.postResult = total.toString();
+	        this.success = true;
 	    } 
 	    catch (ClientProtocolException e)
 	    {
