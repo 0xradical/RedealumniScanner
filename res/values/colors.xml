@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <color name="success_background_color">#E6EFC2</color>
+    <color name="success_text_color">#529214</color>
+    <color name="failure_background_color">#FBE3E4</color>
+    <color name="failure_text_color">#D12F19</color>
+</resources>
