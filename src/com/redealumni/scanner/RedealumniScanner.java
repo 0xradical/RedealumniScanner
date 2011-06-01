@@ -23,6 +23,12 @@ public class RedealumniScanner extends Activity
 		setContentView(R.layout.main);
 
 		Button button = (Button)findViewById(R.id.btn);
+		
+		
+		String result = "";
+		
+		new PostStudentInfoTask(this).execute(result);
+		
 		button.setOnClickListener(new OnClickListener() 
 		{
 
@@ -55,16 +61,12 @@ public class RedealumniScanner extends Activity
 			
 			//Bundle extras = data.getExtras();
 			//String result = extras.getString("SCAN_RESULT");
-			TextView textView = (TextView)findViewById(R.id.txt);
-			textView.setText(result);
+//			TextView textView = (TextView)findViewById(R.id.txt);
+//			textView.setText(result);
 			
 			// this method should post result to an url
-			// new PostStudentInfoTask().execute(result);
+			new PostStudentInfoTask(this).execute(result);
 
-			
-			// Setting visibility of a View
-			//TextView messageView = (TextView)findViewById(R.id.message_view);
-			//messageView.setVisibility(TextView.GONE);
 		}
 	}
 }

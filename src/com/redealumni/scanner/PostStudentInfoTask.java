@@ -1,6 +1,8 @@
 package com.redealumni.scanner;
 
+import android.app.Activity;
 import android.os.AsyncTask;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,18 +19,30 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 
-class PostStudentInfoTask extends AsyncTask<String,Void,Void>
+class PostStudentInfoTask extends AsyncTask<String,Void,String>
 {
 
+	private Activity mainActivity;
+	private String postResult;
+	private Boolean success;
+	
+	public PostStudentInfoTask(Activity activity)
+	{
+		super();
+		this.mainActivity = activity;
+		
+	}
+	
 	@Override
-	protected Void doInBackground(String... studentCode)
+	protected String doInBackground(String... studentCode)
 	{
 		// POST data
 		
 	    // Create a new HttpClient and Post Header
-	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("http://www.yoursite.com/script.php");
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpPost httppost = new HttpPost("http://algumdominio.heroku.com/validate");
 
+	    
 	    try 
 	    {
 	        // Add your data
@@ -50,28 +64,42 @@ class PostStudentInfoTask extends AsyncTask<String,Void,Void>
 	        }
 	        
 	        // total has the return string
-	        
+	        this.postResult = "www";
+	        this.success = false;
 	    } 
 	    catch (ClientProtocolException e)
 	    {
-	        // TODO Auto-generated catch block
+	    	this.postResult = "Error";
+	        this.success = false;
 	    }
 	    catch (IOException e) 
 	    {
-	        // TODO Auto-generated catch block
+	    	this.postResult = "Could not reach host";
+	        this.success = false;
 	    }
 		
-		return null;
+		return this.postResult;
 	}
 	
-	 protected void onProgressUpdate(Integer... progress) 
-	 {
-		 // do something
-     }
 
-     protected void onPostExecute(Long result) 
+     protected void onPostExecute(String result) 
      {
-    	 // do something
+		 TextView messageView = (TextView)mainActivity.findViewById(R.id.message_view);
+		// Setting visibility of a View
+		//messageView.setVisibility(TextView.GONE);
+
+		 
+    	 if(success)
+    	 {
+    		messageView.setTextColor(R.color.success_text_color);
+    	 }
+    	 else
+    	 {
+    		 messageView.setTextColor(R.color.failure_text_color); 
+    	 }
+    	 
+    	 messageView.setText(result);
+    	 
      }
 
 	 
