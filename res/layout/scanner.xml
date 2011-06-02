@@ -133,7 +133,7 @@
 			android:layout_width="32dip"
 			android:layout_height="fill_parent" 
 			android:layout_weight="0"
-			android:background="@drawable/biggu_footer" 
+			android:background="@drawable/redealumni_footer" 
 			android:baselineAligned="false">
 			<FrameLayout 
 				android:layout_width="fill_parent"
