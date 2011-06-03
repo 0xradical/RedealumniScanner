@@ -10,6 +10,5 @@
         android:layout_width="fill_parent" 
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView android:text="Teste" android:id="@+id/textView1" android:layout_marginTop="10dip"  android:layout_above="@+id/btn" android:layout_width="wrap_content" android:layout_alignLeft="@+id/btn" android:layout_alignRight="@+id/btn" android:layout_height="match_parent" android:gravity="center"></TextView>
         <Button android:text="@string/scan_button_text" android:layout_width="match_parent" android:background="@drawable/btn_grey" android:id="@+id/btn" android:layout_height="wrap_content" style="@style/ButtonText" android:layout_alignParentBottom="true"></Button>
 </RelativeLayout> 

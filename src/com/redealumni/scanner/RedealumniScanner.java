@@ -9,13 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class RedealumniScanner extends Activity
 {
 	
 	private static final int SCANNER_REQUEST_CODE = 0;
 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -23,8 +23,7 @@ public class RedealumniScanner extends Activity
 		setContentView(R.layout.main);
 
 		Button button = (Button)findViewById(R.id.btn);
-		
-		
+	    
 		String result = "";
 		
 		new PostStudentInfoTask(this).execute(result);

@@ -1,8 +1,10 @@
 package com.redealumni.scanner;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,12 +27,32 @@ class PostStudentInfoTask extends AsyncTask<String,Void,String>
 	private Activity mainActivity;
 	private String postResult;
 	private Boolean success;
+	private ProgressDialog progressDialog;
+	private AlertDialog alertDialog;
 	
 	public PostStudentInfoTask(Activity activity)
 	{
 		super();
 		this.mainActivity = activity;
 		
+	}
+	
+	protected void onPreExecute()
+	{
+		// build progress dialog
+        this.progressDialog = new ProgressDialog(this.mainActivity);
+        this.progressDialog.setMessage("Validando carta ...");
+        this.progressDialog.setIndeterminate(true);
+        this.progressDialog.setCancelable(false);
+        this.progressDialog.show();
+        
+        // build alert dialog
+        this.alertDialog = new AlertDialog.Builder(this.mainActivity).create();
+        this.alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            return;
+          } });
+        
 	}
 	
 	@Override
@@ -41,7 +63,6 @@ class PostStudentInfoTask extends AsyncTask<String,Void,String>
 	    // Create a new HttpClient and Post Header
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost("http://someherokusite.heroku.com/validate");
-
 	    
 	    try 
 	    {
@@ -49,7 +70,7 @@ class PostStudentInfoTask extends AsyncTask<String,Void,String>
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	        nameValuePairs.add(new BasicNameValuePair("studentCode", studentCode[0]));
 	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
+	        
 	        // Execute HTTP Post Request
 	        HttpResponse response = httpclient.execute(httppost);
 	        
@@ -77,29 +98,31 @@ class PostStudentInfoTask extends AsyncTask<String,Void,String>
 	    	this.postResult = "Could not reach host";
 	        this.success = false;
 	    }
-		
+	    
 		return this.postResult;
 	}
 	
 
      protected void onPostExecute(String result) 
-     {
-		 TextView messageView = (TextView)mainActivity.findViewById(R.id.message_view);
-		// Setting visibility of a View
-		//messageView.setVisibility(TextView.GONE);
-
-		 
-    	 if(success)
+     {    	 
+    	 
+    	 if(this.success)
     	 {
-    		messageView.setTextColor(R.color.success_text_color);
+    	       
+    		 this.alertDialog.setTitle("Sucesso");
+        	 this.alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+
     	 }
     	 else
     	 {
-    		 messageView.setTextColor(R.color.failure_text_color); 
+    		 this.alertDialog.setTitle("Erro");
+    		 this.alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
     	 }
     	 
-    	 messageView.setText(result);
-    	 
+    	 this.alertDialog.setMessage(result);
+         this.alertDialog.show();
+         
+    	 progressDialog.dismiss();
      }
 
 	 
